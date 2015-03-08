@@ -1,53 +1,14 @@
-body {
-  background-color: white;
-  margin: 0 0 0 0;
-  font-family: Arial;
+#article-title {
+  margin-top: 0.5em;
+  margin-left: 0.5em;
+  font-size: 2em;
 }
 
-header {
-  height: 100px;
-  background-color: red;
+#article-teaser {
+  margin-top: 1em;
+  margin-left: 1em;
 }
 
-#date {
-  float: left;
-  width: 18%;
-  padding-left: 1%;
-  padding-right: 1%;
-  text-align: center;
-  font-size: 1.2em;
-  font-style: italic;
-}
-
-#right {
-  float:right;
-  width:18%;
-  padding-left: 1%;
-  padding-right: 1%;
-  text-align: center;
-}
-
-#post {
-  margin-left: 20%;
-  margin-right:20%;
-  padding-left: 1%;
-  padding-right: 1%;
-  border-left-width: thin;
-  border-left-color: gray;
-  border-left-style: solid;
-}
-
-#title {
-  font-size: 1.5em;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-#teaser {
-  font-size: 1.2em;
-}
-
-#text {
-  font-size: 1em;
-  text-align: justify;
+article {
+  margin-left: 1em;
 }

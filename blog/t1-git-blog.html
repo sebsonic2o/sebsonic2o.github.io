@@ -1,19 +1,38 @@
 <!DOCTYPE html>
 <head>
-  <title>Git Bloggin'</title>
+  <title>@sebsonic2o</title>
   <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
 </head>
 <body>
 <header>
+  <nav id="logo"><a href="../index.html">sebsonic2o</a></nav>
+  <div id="icons-bottom">
+    <section class="icon"><a href="https://plus.google.com/u/0/+SebastienCheraux"><img src="../imgs/google-icon.svg" alt="Google Plus" /></a></section>
+    <section class="icon"><a href="https://twitter.com/sebsonic2o"><img src="../imgs/twitter-icon.svg" alt="Twitter" /></a></section>
+    <section class="icon"><a href="https://github.com/sebsonic2o"><img src="../imgs/github-icon.svg" alt="GitHub" /></a></section>
+    <section class="icon"><a href="https://www.linkedin.com/in/sebsonic2o"><img src="../imgs/linkedin-icon.svg" alt="Linked In" /></a></section>
+    <section class="icon"><a href="mailto:scheraux@gmail.com"><img src="../imgs/mail-icon.svg" alt="Mail" /></a></section>
+  </div>
+  <div id="menu">
+    <section id="menu-title">MENU</section>
+    <section id="menu-icon"></section>
+    <nav class="menu-item"><a href="../about/index.html">About</a></nav>
+    <nav class="menu-item"><a href="../projects/index.html">Projects</a></nav>
+    <nav class="menu-item"><a href="../blog/index.html">Blog</a></nav>
+    <nav class="menu-item"><a href="../contact/index.html">Contact</a></nav>
+  </div>
 </header>
 <main>
-  <section id="date">February 27th, 2015</section>
-  <div id="right"></div>
-  <article id="post">
-    <section id="title"><p>Git Bloggin'</p></section>
-    <section id="teaser"><p>Or thinking about Version Control, Git, and GitHub...</p></section>
-    <section id="text">
+  <div id="main-left">
+    <section class="date">February 27th, 2015</section>
+  </div>
+  <div id="main-middle">
+    <section id="article-title">Git Bloggin'</section>
+    <section id="article-teaser">Or thinking about Version Control, Git, and GitHub...</section>
+    <article>
       <p>
         Let’s imagine that we want to write a document and track our changes. For this, we need to be able to take snapshots of our changes, save them, and see them. Version Control allows us to do just that. Now, let's consider that developers generally collaborate on projects that include many files with a lot of changes. Without Version Control, only the latest change would be kept. A change could introduce a problem or, even worse, erase good work. With no way to look back at changes, this would get very messy.
       </p>
@@ -23,8 +42,9 @@
       <p>
         In many cases, your work is to be shared with others. GitHub basically provides an online location for your Git work to be shared with others. You can sign up for an account today. It's free!
       </p>
-      <!-- copy and paste as many paragraphs as you want -->
-    </section>
-  </article>
+    </article>
+  </div>
+  <div id="main-right">
+  </div>
 </main>
 </body>
