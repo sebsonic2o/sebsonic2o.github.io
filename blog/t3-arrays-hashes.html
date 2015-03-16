@@ -34,35 +34,54 @@
     <section id="article-teaser">Or thinking about Arrays and Hashes...</section>
     <article>
       <p>
-        Once upon a time, there was a rich nation at peace with all its neighbors. In the North, its magnificent capital city was bordered by its most trusted ally. However, other neighbors were very envious. But only unique properties of the nation's land prevented them from being at war:
+        We all make lists of things: Things to do, things we need, things we love, and so on. And we may not want to forget about them. In Ruby, you can use Arrays and Hashes to store this information.
       </p>
       <p>
-        To the East, a vast expanse from the city that was easily guarded by the nation,<br>
-        #land { padding-right: 100px; }
+        I like to remember dishes I enjoy most, from any of my favorite restaurants. For Indian, it is Shezan and my preferred combination is:
       </p>
       <p>
-        To the South, a natural border that was made up of a large river,<br>
-        #land { border-bottom: 5px solid blue; }
+        Vegetable Samosa<br>
+        Chicken Tikka Masala<br>
+        Garlic Naan<br>
+        Basmati Rice
       </p>
       <p>
-        To the West, a neutral zone expanding away from the border that was not to be crossed,<br>
-        #land { margin-left: 50px; }
+        In Ruby, I could use the Array structure to store my list as follows:
       </p>
       <p>
-        All was well until the evil neighbor from the West discovered that neutral zones could be turned around, and war was on!<br>
-        #evil { margin-right: -100px; }
+        favorite_shezan_dishes = ["Vegetable Samosa", "Chicken Tikka Masala", "Garlic Naan", "Basmati Rice"]
       </p>
       <p>
-        Please feel free to use the technical glossary below and read again:<br>
-        Padding for vast expanse<br>
-        Border for natural border<br>
-        Margin for neutral zone<br>
-        HTML element for nation, neighbor, or land<br>
-        Content for city<br>
-        North for top<br>
-        East for right<br>
-        South for bottom<br>
-        West for left
+        And we can retrieve any item in the list based on its position counting from 0, not 1. In Ruby talk, it is called the index.
+      </p>
+      <p>
+        favorite_shezan_dishes[0] would return "Vegetable Samosa"<br>
+        favorite_shezan_dishes[1] would return "Chicken Tikka Masala"<br>
+        favorite_shezan_dishes[2] would return "Garlic Naan"<br>
+        favorite_shezan_dishes[3] would return "Basmati Rice"
+      </p>
+      <p>
+        In Ruby, the Hash structure is very similar to the Array structure. The difference is that you can label each of the items in the list. In Ruby talk, it is called the key. I can now store my list as follows:
+      </p>
+      <p>
+        favorite_shezan_dishes = {<br>
+        appetizer: "Vegetable Samosa",<br>
+        main: "Chicken Tikka Masala",<br>
+        bread: "Garlic Naan",<br>
+        side: "Basmati Rice"<br>
+        }
+      </p>
+      <p>
+        And we can retrieve any item in the list based on its key.
+      </p>
+      <p>
+        favorite_shezan_dishes[:appetizer] would return "Vegetable Samosa"<br>
+        favorite_shezan_dishes[:main] would return "Chicken Tikka Masala"<br>
+        favorite_shezan_dishes[:bread] would return "Garlic Naan"<br>
+        favorite_shezan_dishes[:side] would return "Basmati Rice"
+      </p>
+      <p>
+        So you would probably use an Array when there is a natural order for your list items. And you would prefer a Hash when a natural label can be associated to your list items.
       </p>
     </article>
   </div>
