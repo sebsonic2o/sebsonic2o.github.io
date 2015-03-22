@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<head>
+  <title>@sebsonic2o</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+<body>
+<header>
+  <nav id="logo"><a href="../index.html">sebsonic2o</a></nav>
+  <div id="icons-bottom">
+    <section class="icon"><a href="https://plus.google.com/u/0/+SebastienCheraux"><img src="../imgs/google-icon.svg" alt="Google Plus" /></a></section>
+    <section class="icon"><a href="https://twitter.com/sebsonic2o"><img src="../imgs/twitter-icon.svg" alt="Twitter" /></a></section>
+    <section class="icon"><a href="https://github.com/sebsonic2o"><img src="../imgs/github-icon.svg" alt="GitHub" /></a></section>
+    <section class="icon"><a href="https://www.linkedin.com/in/sebsonic2o"><img src="../imgs/linkedin-icon.svg" alt="Linked In" /></a></section>
+    <section class="icon"><a href="mailto:scheraux@gmail.com"><img src="../imgs/mail-icon.svg" alt="Mail" /></a></section>
+  </div>
+  <div id="menu">
+    <section id="menu-title">MENU</section>
+    <section id="menu-icon"></section>
+    <nav class="menu-item"><a href="../about/index.html">About</a></nav>
+    <nav class="menu-item"><a href="../projects/index.html">Projects</a></nav>
+    <nav class="menu-item"><a href="../blog/index.html">Blog</a></nav>
+    <nav class="menu-item"><a href="../contact/index.html">Contact</a></nav>
+  </div>
+</header>
+<main>
+  <div id="main-left">
+    <section class="date">March 21st, 2015</section>
+  </div>
+  <div id="main-middle">
+    <section id="article-title">A Ruby Enumerable Method</section>
+    <section id="article-teaser">Or thinking about group_by...</section>
+    <article>
+      <p>
+        I have talked about <a href="./t3-arrays-hashes.html">Ruby Collections</a> such as Arrays and Hashes before. Arrays and Hashes are both collections that are enumerable, meaning that you can get each of the collection items, one after the other. Basically, they have an each method! So enumerable collections share common characteristics. Wouldn't it be nice to have methods that could be applied to all enumerable collections even your own? Here comes the Ruby Enumerable Module with plenty of powerful methods to use with any enumerable collection! We'll talk about one of them: group_by.
+      </p>
+      <p>
+        The group_by method breaks a collection into groups based on some given criteria. Let's imagine that I have a collection of first names:
+      </p>
+      <p>
+        first_names = ["Brian", "David", "Richard", "Sebastien", "Charles", "James"]
+      </p>
+      <p>
+        To group them by length, I can use the group_by method as follows:
+      </p>
+      <p>
+        first_names.group_by {|first_name| first_name.length}
+      </p>
+      <p>
+        In the code above, each first name is passed to the block. And the block’s result is the length of name. group_by returns a hash where each block's result is a key, and each value is an array comprised of the collection items that gave this same result:
+      </p>
+      <p>
+        => {5 => ["Brian", "David", "James"], 7 => ["Richard", "Charles"], 9 => ["Sebastien"]}
+      </p>
+      <p>
+        That's pretty neat, isn't it? So, next time you think about using the each method to do something with a collection, you may want to first check the Ruby Enumerable Module for an easier way.
+      </p>
+    </article>
+  </div>
+  <div id="main-right">
+  </div>
+</main>
+</body>
