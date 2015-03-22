@@ -49,7 +49,7 @@
         first_names.group_by {|first_name| first_name.length}
       </p>
       <p>
-        In the code above, each first name is passed to the block. And the block’s result is the length of name. group_by returns a hash where each block's result is a key, and each value is an array comprised of the collection items that gave this same result:
+        In the code above, each first name is passed to the block. And the block’s result is the length of the first name. group_by returns a hash where each block's result is a key, and each value is an array comprised of the collection items that gave this same result:
       </p>
       <p>
         => {5 => ["Brian", "David", "James"], 7 => ["Richard", "Charles"], 9 => ["Sebastien"]}
