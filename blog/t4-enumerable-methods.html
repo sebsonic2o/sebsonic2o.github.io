@@ -39,21 +39,27 @@
       <p>
         The group_by method breaks a collection into groups based on some given criteria. Let's imagine that I have a collection of first names:
       </p>
-      <p>
-        first_names = ["Brian", "David", "Richard", "Sebastien", "Charles", "James"]
-      </p>
+      <div class="code">
+        <p>
+          first_names = ["Brian", "David", "Richard", "Sebastien", "Charles", "James"]
+        </p>
+      </div>
       <p>
         To group them by length, I can use the group_by method as follows:
       </p>
-      <p>
-        first_names.group_by {|first_name| first_name.length}
-      </p>
+      <div class="code">
+        <p>
+          first_names.group_by {|first_name| first_name.length}
+        </p>
+      </div>
       <p>
         In the code above, each first name is passed to the block. And the block’s result is the length of the first name. group_by returns a hash where each block's result is a key, and each value is an array comprised of the collection items that gave this same result:
       </p>
-      <p>
-        => {5 => ["Brian", "David", "James"], 7 => ["Richard", "Charles"], 9 => ["Sebastien"]}
-      </p>
+      <div class="code">
+        <p>
+          => {5 => ["Brian", "David", "James"], 7 => ["Richard", "Charles"], 9 => ["Sebastien"]}
+        </p>
+      </div>
       <p>
         That's pretty neat, isn't it? So, next time you think about using the each method to do something with a collection, you may want to first check the Ruby Enumerable Module for an easier way out!
       </p>
