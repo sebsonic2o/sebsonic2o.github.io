@@ -34,10 +34,10 @@
     <section id="article-teaser">Or thinking about Objects...</section>
     <article>
       <p>
-        Like some other programming languages, Ruby is Object-Oriented. This means that everything is represented and manipulated as an Object. What is an Object then? It is basically anything that has its own state and behavior. And we can define our own Objects to best model whatever we want to. However, all things (i.e. Objects) are different, but many are kind of the same. This is what a Class is. In Ruby, when defining our own Objects, we will first create a Class to say what kind of Objects we want to create.
+        Like some other programming languages, Ruby is Object-Oriented. This means that everything is represented and manipulated as an Object. What is an Object then? It is basically anything that has its own state and behavior. And we can define our own Objects to best model... well, anything. However, all things (i.e. Objects) are different, but many are kind of the same. This is what a Class is. In Ruby, when defining our own Objects, we will first create a Class to say what kind of Objects we want to create.
       </p>
       <p>
-        For instance, we may think of creating a 2015 Mercedes-Benz C63 AMG coupe. It is kind of a car, isn't it? So let's first create a Class Car in Ruby:
+        For instance, we may think of modeling a 2015 Mercedes-Benz C63 AMG coupe. It is kind of a car, isn't it? So let's first create a Class Car in Ruby:
       </p>
       <div class="code">
         <p>
@@ -46,7 +46,7 @@
         </p>
       </div>
       <p>
-        We want to specify how to create our car. This is a special behavior of our car. In Ruby, a behavior of an Object is an instance method. And the special instance method name for creation is initialize:
+        We may want to specify how to create our car. This is a special behavior of our car. In Ruby, a behavior of an Object is an instance method. And the initialize method can be used at creation:
       </p>
       <div class="code">
         <p>
@@ -57,7 +57,7 @@
         </p>
       </div>
       <p>
-        We can use the year (2015), brand (Mercedes-Benz), model (C63 AMG), and style (coupe) to differentiate it from other cars. All those characterictics for our car should be saved. We should do this at creation. In Ruby, we use instance variables (starting with a @):
+        The year (2015), brand (Mercedes-Benz), model (C63 AMG), and style (coupe) differentiate our car from other cars. All those characterictics should be saved. We should do this at creation. In Ruby, we use instance variables (starting with a @):
       </p>
       <div class="code">
         <p>
@@ -72,7 +72,7 @@
         </p>
       </div>
       <p>
-        Furthermore, we might want to add its state out of the factory. For instance, its mileage:
+        Furthermore, we might want to add its state out of the factory. For instance, its mileage could be set at creation:
       </p>
       <div class="code">
         <p>
@@ -116,7 +116,7 @@
         </p>
       </div>
       <p>
-        And it is important to notice that new is being used to call our special instance method initialize.
+        Please note that new is being used to create our car Object and call our special instance method initialize.
       </p>
       <p>
         <a href="https://www.youtube.com/watch?v=7tGuJ34062s">"Oh Lord won't you buy me a Mercedes Benz?"</a> Oh yes we did, Janis Joplin!
