@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+  <title>@sebsonic2o</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+<body>
+<header>
+  <nav id="logo"><a href="../index.html">sebsonic2o</a></nav>
+  <div id="icons-bottom">
+    <section class="icon"><a href="https://plus.google.com/u/0/+SebastienCheraux"><img src="../imgs/google-icon.svg" alt="Google Plus" /></a></section>
+    <section class="icon"><a href="https://twitter.com/sebsonic2o"><img src="../imgs/twitter-icon.svg" alt="Twitter" /></a></section>
+    <section class="icon"><a href="https://github.com/sebsonic2o"><img src="../imgs/github-icon.svg" alt="GitHub" /></a></section>
+    <section class="icon"><a href="https://www.linkedin.com/in/sebsonic2o"><img src="../imgs/linkedin-icon.svg" alt="Linked In" /></a></section>
+    <section class="icon"><a href="mailto:scheraux@gmail.com"><img src="../imgs/mail-icon.svg" alt="Mail" /></a></section>
+  </div>
+  <div id="menu">
+    <section id="menu-title">MENU</section>
+    <section id="menu-icon"></section>
+    <nav class="menu-item"><a href="../about/index.html">About</a></nav>
+    <nav class="menu-item"><a href="../projects/index.html">Projects</a></nav>
+    <nav class="menu-item"><a href="../blog/index.html">Blog</a></nav>
+    <nav class="menu-item"><a href="../contact/index.html">Contact</a></nav>
+  </div>
+</header>
+<main>
+  <div id="main-left">
+    <section class="date">April 4th, 2015</section>
+  </div>
+  <div id="main-middle">
+    <section id="article-title">A Story of Composition</section>
+    <section id="article-teaser">Or thinking about Object-Oriented "versus" Functional Programming...</section>
+    <article>
+      <p>
+        I have been exposed to Object-Oriented Programming for some time now. So I was very interested to look into Functional Programming as well. At first, I was surprised by the amount of debate over those two paradigms. It feels like OOP wizards want to defend their turf at all cost against FP wizards (and vice versa). With a fresh outlook, a lot of it seems to be fueled by ignorance or close-mindedness.
+      </p>
+      <p>
+        Both programming concepts leverage data and operations on data. The difference boils down to how we choose to compose the code and what discipline we want to impose.
+      </p>
+      <p>
+        In OOP, the code is organized with objects that can hold data (state), and a contract is formed with functions that can be used with the object (behavior). Such a contract might look a little bit like this:
+        <ul>
+          <li>I am a kind of rectangle</li>
+          <li>Width and height differentiate me from other rectangles</li>
+          <li>You can change me to a square</li>
+        </ul>
+      </p>
+      <div class="code">
+        <p>
+          class Rectangle<br>
+          &nbsp;&nbsp;def initialize(width, height)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;@width = width<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;@height = height<br>
+          &nbsp;&nbsp;end<br><br>
+          &nbsp;&nbsp;def to_square<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;if @width > @height<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@height = @width<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@width = @height<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+          &nbsp;&nbsp;end<br>
+          end
+        </p>
+      </div>
+      <p>
+        In FP, the code is organized with functions, and a contract is signed on data in and out of the function. Such a contract might look a little bit like this:
+        <ul>
+          <li>I am a function to square</li>
+          <li>You can give me a structure with width and height as input</li>
+          <li>I will not change the input</li>
+          <li>I will output a new structure with same width and height</li>
+          <li>Given the same input, I will always return the same output</li>
+        </ul>
+      </p>
+      <div class="code">
+        <p>
+          Rectangle = Struct.new(:width, :height)<br><br>
+          def to_square(rectangle)<br>
+          &nbsp;&nbsp;if rectangle.width > rectangle.height<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Rectangle.new(rectangle.width, rectangle.width)<br>
+          &nbsp;&nbsp;else<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;Rectangle.new(rectangle.height, rectangle.height)<br>
+          &nbsp;&nbsp;end<br>
+          end
+        </p>
+      </div>
+      <p>
+        To get to an end result with FP, you will then chain functions without changing the state of variables. This means that there is no concurrent update problems in your program since nothing is getting updated.
+      </p>
+      <p>
+        So are FP and OOP mutually exclusive? Not really. FP principles are great for reducing data mutation concerns, whereas OOP principles are excellent for defining architectural boundaries. For instance, I am glad that I can use FP features such as recursions, lambdas, or procs in my OO programs written in Ruby.
+      </p>
+      <p>
+        Fortunately, many others in the community do share the same view. We see functional and object-oriented programming as valid paradigms that enhance software development when used wisely. It is like salt and pepper. You may need a little bit of both for your meal to taste good!
+      </p>
+    </article>
+  </div>
+  <div id="main-right">
+  </div>
+</main>
+</body>
