@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<head>
+  <title>@sebsonic2o</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+</head>
+<body>
+<header>
+  <nav id="logo"><a href="../index.html">sebsonic2o</a></nav>
+  <div id="icons-bottom">
+    <section class="icon"><a href="https://plus.google.com/u/0/+SebastienCheraux"><img src="../imgs/google-icon.svg" alt="Google Plus" /></a></section>
+    <section class="icon"><a href="https://twitter.com/sebsonic2o"><img src="../imgs/twitter-icon.svg" alt="Twitter" /></a></section>
+    <section class="icon"><a href="https://github.com/sebsonic2o"><img src="../imgs/github-icon.svg" alt="GitHub" /></a></section>
+    <section class="icon"><a href="https://www.linkedin.com/in/sebsonic2o"><img src="../imgs/linkedin-icon.svg" alt="Linked In" /></a></section>
+    <section class="icon"><a href="mailto:scheraux@gmail.com"><img src="../imgs/mail-icon.svg" alt="Mail" /></a></section>
+  </div>
+  <div id="menu">
+    <section id="menu-title">MENU</section>
+    <section id="menu-icon"></section>
+    <nav class="menu-item"><a href="../about/index.html">About</a></nav>
+    <nav class="menu-item"><a href="../projects/index.html">Projects</a></nav>
+    <nav class="menu-item"><a href="../blog/index.html">Blog</a></nav>
+    <nav class="menu-item"><a href="../contact/index.html">Contact</a></nav>
+  </div>
+</header>
+<main>
+  <div id="main-left">
+    <section class="date">April 10th, 2015</section>
+  </div>
+  <div id="main-middle">
+    <section id="article-title">Classy JavaScript</section>
+    <section id="article-teaser">Or thinking about a class-like approach in JavaScript...</section>
+    <article>
+      <p>
+        Unlike Ruby and some other object-oriented languages, there are no classes in JavaScript. However, it is still possible to define and instantiate objects that are kind of the same. Class-like if you like!
+      </p>
+      <p>
+        Let's imagine that we program a game where fighters would attack each other until one dies. For this, we would want to define a class from which we can create multiple fighters.
+      </p>
+      <p>
+        In Ruby, we could start defining our class as follows.
+      </p>
+      <div class="code">
+        <p>
+          class Fighter<br>
+          &nbsp;&nbsp;def initialize(health, power)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;@health = health<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;@power = power<br>
+          &nbsp;&nbsp;end<br>
+          end
+        </p>
+      </div>
+      <p>
+        And we can now create our fighters:
+      </p>
+      <div class="code">
+        <p>
+          knight = Fighter.new(100, 30)<br>
+          dragon = Fighter.new(300, 10)
+        </p>
+      </div>
+      <p>
+        In JavaScript, we would leverage a constructor function for our class.
+      </p>
+      <div class="code">
+        <p>
+          function Fighter(health, power) {<br>
+          &nbsp;&nbsp;this.health = health;<br>
+          &nbsp;&nbsp;this.power = power;<br>
+          }
+        </p>
+      </div>
+      <p>
+        And we can now create our fighters.
+      </p>
+      <p>
+        <div class="code">
+        <p>
+          var knight = new Fighter(100, 30);<br>
+          var dragon = new Fighter(300, 10);
+        </p>
+      </div>
+      </p>
+      <p>
+        In Ruby, we could then add some methods to our class as follows.
+      </p>
+      <div class="code">
+        <p>
+          class Fighter<br>
+          &nbsp;&nbsp;attr_accessor :health<br><br>
+          &nbsp;&nbsp;def initialize(health, power)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;@health = health<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;@power = power<br>
+          &nbsp;&nbsp;end<br><br>
+          &nbsp;&nbsp;def live<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;if @health > 0<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;end<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;return false<br>
+          &nbsp;&nbsp;end<br><br>
+          &nbsp;&nbsp;def attack(fighter)<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health -= (rand(2) + 1) * @power<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health = [0, fighter.health].max<br>
+          &nbsp;&nbsp;end<br>
+          end
+        </p>
+      </div>
+      <p>
+        And we can now use our fighter methods to fight until one dies.
+      </p>
+      <div class="code">
+        <p>
+          knight = Fighter.new(100, 30)<br>
+          dragon = Fighter.new(300, 10)<br><br>
+          while knight.live &amp;&amp; dragon.live<br>
+          &nbsp;&nbsp;dragon.attack(knight)<br>
+          &nbsp;&nbsp;knight.attack(dragon)<br>
+          &nbsp;&nbsp;puts "Knight's health = #{knight.health}"<br>
+          &nbsp;&nbsp;puts "Dragon's health = #{dragon.health}"<br>
+          end
+        </p>
+      </div>
+      <p>
+        In JavaScript, we could add the same methods to our "class" (aka constructor function) as follows.
+      </p>
+      <div class="code">
+        <p>
+          function Fighter(health, power) {<br>
+          &nbsp;&nbsp;this.health = health;<br>
+          &nbsp;&nbsp;this.power = power;<br><br>
+          &nbsp;&nbsp;this.live = function() {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;if (this.health > 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
+          &nbsp;&nbsp;};<br><br>
+          &nbsp;&nbsp;this.attack = function(fighter) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health -= Math.floor(Math.random() * 2 + 1) * this.power;<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health = Math.max(0, fighter.health);<br>
+          &nbsp;&nbsp;};<br>
+          }
+        </p>
+      </div>
+      <p>
+        Better yet, we could add the same methods to the prototype property of our constructor function (aka "class"). It is less expensive because the methods are not recreated everytime we create a new object.
+      </p>
+      <div class="code">
+        <p>
+          function Fighter(health, power) {<br>
+          &nbsp;&nbsp;this.health = health;<br>
+          &nbsp;&nbsp;this.power = power;<br>
+          }<br><br>
+          Fighter.prototype.live = function() {<br>
+          &nbsp;&nbsp;if (this.health > 0) {<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
+          &nbsp;&nbsp;}<br>
+          &nbsp;&nbsp;return false;<br>
+          };<br><br>
+          Fighter.prototype.attack = function(fighter) {<br>
+          &nbsp;&nbsp;fighter.health -= Math.floor(Math.random() * 2 + 1) * this.power;<br>
+          &nbsp;&nbsp;fighter.health = Math.max(0, fighter.health);<br>
+          };
+        </p>
+      </div>
+      <p>
+        In both cases, we can now use our fighter methods to fight until one dies as follows.
+      </p>
+      <div class="code">
+        <p>
+          var knight = new Fighter(100, 30);<br>
+          var dragon = new Fighter(300, 10);<br><br>
+          while (knight.live() &amp;&amp; dragon.live()) {<br>
+          &nbsp;&nbsp;dragon.attack(knight);<br>
+          &nbsp;&nbsp;knight.attack(dragon);<br>
+          &nbsp;&nbsp;console.log("Knight's health = ", knight.health);<br>
+          &nbsp;&nbsp;console.log("Dragon's health = ", dragon.health);<br>
+          }
+        </p>
+      </div>
+      <p>
+        If you read this far, you should now remember that:
+      </p>
+      <ul>
+        <li>Classes are first-class objects in Ruby</li>
+        <li>Functions are first-class objects in JavaScript</li>
+      </ul>
+    </article>
+  </div>
+  <div id="main-right">
+  </div>
+</main>
+</body>

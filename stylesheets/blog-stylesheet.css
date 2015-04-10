@@ -15,6 +15,7 @@ article {
 
 .code {
   background: white;
+  font-family: monospace;
   padding: 0.5em;
   margin: 0.5em;
   border-radius: 15px
