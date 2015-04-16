@@ -5,6 +5,8 @@
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism.css">
+<script src="../js/prism.js"></script>
 </head>
 <body>
 <header>
@@ -42,143 +44,132 @@
       <p>
         In Ruby, we could start defining our class as follows.
       </p>
-      <div class="code">
-        <p>
-          class Fighter<br>
-          &nbsp;&nbsp;def initialize(health, power)<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;@health = health<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;@power = power<br>
-          &nbsp;&nbsp;end<br>
-          end
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+      class Fighter
+        def initialize(health, power)
+          @health = health
+          @power = power
+        end
+      end
+      </code></pre>
       <p>
         And we can now create our fighters:
       </p>
-      <div class="code">
-        <p>
-          knight = Fighter.new(100, 30)<br>
-          dragon = Fighter.new(300, 10)
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+      knight = Fighter.new(100, 30)
+      dragon = Fighter.new(300, 10)
+      </code></pre>
       <p>
         In JavaScript, we would leverage a constructor function for our class.
       </p>
-      <div class="code">
-        <p>
-          function Fighter(health, power) {<br>
-          &nbsp;&nbsp;this.health = health;<br>
-          &nbsp;&nbsp;this.power = power;<br>
-          }
-        </p>
-      </div>
+      <pre><code class="language-javascript">
+      function Fighter(health, power) {
+        this.health = health;
+        this.power = power;
+      }
+      </code></pre>
       <p>
         And we can now create our fighters.
       </p>
-      <p>
-        <div class="code">
-        <p>
-          var knight = new Fighter(100, 30);<br>
-          var dragon = new Fighter(300, 10);
-        </p>
-      </div>
-      </p>
+      <pre><code class="language-javascript">
+      var knight = new Fighter(100, 30);
+      var dragon = new Fighter(300, 10);
+      </code></pre>
       <p>
         In Ruby, we could then add some methods to our class as follows.
       </p>
-      <div class="code">
-        <p>
-          class Fighter<br>
-          &nbsp;&nbsp;attr_accessor :health<br><br>
-          &nbsp;&nbsp;def initialize(health, power)<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;@health = health<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;@power = power<br>
-          &nbsp;&nbsp;end<br><br>
-          &nbsp;&nbsp;def live<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;if @health > 0<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;end<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;return false<br>
-          &nbsp;&nbsp;end<br><br>
-          &nbsp;&nbsp;def attack(fighter)<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health -= (rand(2) + 1) * @power<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health = [0, fighter.health].max<br>
-          &nbsp;&nbsp;end<br>
+      <pre><code class="language-ruby">
+      class Fighter
+        attr_accessor :health
+
+        def initialize(health, power)
+          @health = health
+          @power = power
+        end
+
+        def live
+          if @health > 0
+            return true
           end
-        </p>
-      </div>
+            return false
+        end
+
+        def attack(fighter)
+          fighter.health -= (rand(2) + 1) * @power
+          fighter.health = [0, fighter.health].max
+        end
+      end
+      </code></pre>
       <p>
         And we can now use our fighter methods to fight until one dies.
       </p>
-      <div class="code">
-        <p>
-          knight = Fighter.new(100, 30)<br>
-          dragon = Fighter.new(300, 10)<br><br>
-          while knight.live &amp;&amp; dragon.live<br>
-          &nbsp;&nbsp;dragon.attack(knight)<br>
-          &nbsp;&nbsp;knight.attack(dragon)<br>
-          &nbsp;&nbsp;puts "Knight's health = #{knight.health}"<br>
-          &nbsp;&nbsp;puts "Dragon's health = #{dragon.health}"<br>
-          end
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+      knight = Fighter.new(100, 30)
+      dragon = Fighter.new(300, 10)
+
+      while knight.live && dragon.live
+          dragon.attack(knight)
+          knight.attack(dragon)
+          puts "Knight's health = #{knight.health}"
+          puts "Dragon's health = #{dragon.health}"
+      end
+      </code></pre>
       <p>
         In JavaScript, we could add the same methods to our "class" (aka constructor function) as follows.
       </p>
-      <div class="code">
-        <p>
-          function Fighter(health, power) {<br>
-          &nbsp;&nbsp;this.health = health;<br>
-          &nbsp;&nbsp;this.power = power;<br><br>
-          &nbsp;&nbsp;this.live = function() {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;if (this.health > 0) {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;return false;<br>
-          &nbsp;&nbsp;};<br><br>
-          &nbsp;&nbsp;this.attack = function(fighter) {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health -= Math.floor(Math.random() * 2 + 1) * this.power;<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;fighter.health = Math.max(0, fighter.health);<br>
-          &nbsp;&nbsp;};<br>
+      <pre><code class="language-javascript">
+      function Fighter(health, power) {
+        this.health = health;
+        this.power = power;
+
+        this.live = function() {
+          if (this.health > 0) {
+            return true;
           }
-        </p>
-      </div>
+          return false;
+        };
+
+        this.attack = function(fighter) {
+          fighter.health -= Math.floor(Math.random() * 2 + 1) * this.power;
+          fighter.health = Math.max(0, fighter.health);
+        };
+      }
+      </code></pre>
       <p>
         Better yet, we could add the same methods to the prototype property of our constructor function (aka "class"). It is less expensive because the methods are not recreated everytime we create a new object.
       </p>
-      <div class="code">
-        <p>
-          function Fighter(health, power) {<br>
-          &nbsp;&nbsp;this.health = health;<br>
-          &nbsp;&nbsp;this.power = power;<br>
-          }<br><br>
-          Fighter.prototype.live = function() {<br>
-          &nbsp;&nbsp;if (this.health > 0) {<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;return true;<br>
-          &nbsp;&nbsp;}<br>
-          &nbsp;&nbsp;return false;<br>
-          };<br><br>
-          Fighter.prototype.attack = function(fighter) {<br>
-          &nbsp;&nbsp;fighter.health -= Math.floor(Math.random() * 2 + 1) * this.power;<br>
-          &nbsp;&nbsp;fighter.health = Math.max(0, fighter.health);<br>
-          };
-        </p>
-      </div>
+      <pre><code class="language-javascript">
+      function Fighter(health, power) {
+        this.health = health;
+        this.power = power;
+      }
+
+      Fighter.prototype.live = function() {
+        if (this.health > 0) {
+          return true;
+        }
+        return false;
+      };
+
+      Fighter.prototype.attack = function(fighter) {
+        fighter.health -= Math.floor(Math.random() * 2 + 1) * this.power;
+        fighter.health = Math.max(0, fighter.health);
+      };
+      </code></pre>
       <p>
         In both cases, we can now use our fighter methods to fight until one dies as follows.
       </p>
-      <div class="code">
-        <p>
-          var knight = new Fighter(100, 30);<br>
-          var dragon = new Fighter(300, 10);<br><br>
-          while (knight.live() &amp;&amp; dragon.live()) {<br>
-          &nbsp;&nbsp;dragon.attack(knight);<br>
-          &nbsp;&nbsp;knight.attack(dragon);<br>
-          &nbsp;&nbsp;console.log("Knight's health = ", knight.health);<br>
-          &nbsp;&nbsp;console.log("Dragon's health = ", dragon.health);<br>
-          }
-        </p>
-      </div>
+      <pre><code class="language-javascript">
+      var knight = new Fighter(100, 30);
+      var dragon = new Fighter(300, 10);
+
+      while (knight.live() && dragon.live()) {
+        dragon.attack(knight);
+        knight.attack(dragon);
+        console.log("Knight's health = ", knight.health);
+        console.log("Dragon's health = ", dragon.health);
+      }
+      </code></pre>
       <p>
         If you read this far, you should now remember that:
       </p>

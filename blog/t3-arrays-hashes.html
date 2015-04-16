@@ -5,6 +5,8 @@
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism.css">
+<script src="../js/prism.js"></script>
 </head>
 <body>
 <header>
@@ -48,54 +50,38 @@
       <p>
         In Ruby, I could use the Array structure to store my list as follows:
       </p>
-      <div class="code">
-        <p>
-          favorite_shezan_dishes = ["Vegetable Samosa", "Chicken Tikka Masala", "Garlic Naan", "Basmati Rice"]
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+favorite_shezan_dishes = ["Vegetable Samosa", "Chicken Tikka Masala", "Garlic Naan", "Basmati Rice"]
+      </code></pre>
       <p>
         And we can retrieve any item in the list based on its position counting from 0, not 1. In Ruby talk, it is called the index.
       </p>
-      <div class="code">
-        <p>
-          favorite_shezan_dishes[0]<br>
-          => "Vegetable Samosa"<br><br>
-          favorite_shezan_dishes[1]<br>
-          => "Chicken Tikka Masala"<br><br>
-          favorite_shezan_dishes[2]<br>
-          => "Garlic Naan"<br><br>
-          favorite_shezan_dishes[3]<br>
-          => "Basmati Rice"
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+favorite_shezan_dishes[0] # => "Vegetable Samosa"
+favorite_shezan_dishes[1] # => "Chicken Tikka Masala"
+favorite_shezan_dishes[2] # => "Garlic Naan"
+favorite_shezan_dishes[3] # => "Basmati Rice"
+      </code></pre>
       <p>
         In Ruby, the Hash structure is very similar to the Array structure. The difference is that you can label each of the items in the list. In Ruby talk, it is called the key. I can now store my list as follows:
       </p>
-      <div class="code">
-        <p>
-          favorite_shezan_dishes = {<br><br>
-          &nbsp;&nbsp;appetizer: "Vegetable Samosa",<br>
-          &nbsp;&nbsp;main: "Chicken Tikka Masala",<br>
-          &nbsp;&nbsp;bread: "Garlic Naan",<br>
-          &nbsp;&nbsp;side: "Basmati Rice"<br><br>
-          }
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+favorite_shezan_dishes = {
+  appetizer: "Vegetable Samosa",
+  main: "Chicken Tikka Masala",
+  bread: "Garlic Naan",
+  side: "Basmati Rice"
+}
+      </code></pre>
       <p>
         And we can retrieve any item in the list based on its key.
       </p>
-      <div class="code">
-        <p>
-          favorite_shezan_dishes[:appetizer]<br>
-          => "Vegetable Samosa"<br><br>
-          favorite_shezan_dishes[:main]<br>
-          => "Chicken Tikka Masala"<br><br>
-          favorite_shezan_dishes[:bread]<br>
-          => "Garlic Naan"<br><br>
-          favorite_shezan_dishes[:side]<br>
-          => "Basmati Rice"
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+favorite_shezan_dishes[:appetizer] # => "Vegetable Samosa"
+favorite_shezan_dishes[:main] # => "Chicken Tikka Masala"
+favorite_shezan_dishes[:bread] # => "Garlic Naan"
+favorite_shezan_dishes[:side] # => "Basmati Rice"
+      </code></pre>
       <p>
         So you would probably use an Array when there is a natural order for your collection items. And you would prefer a Hash when a natural label can be associated to your collection items.
       </p>

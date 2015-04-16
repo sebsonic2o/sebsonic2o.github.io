@@ -11,8 +11,10 @@
 
 article {
   margin-left: 1em;
+  margin-right: 1em;
 }
 
+/*
 .code {
   background: white;
   font-family: monospace;
@@ -20,3 +22,4 @@ article {
   margin: 0.5em;
   border-radius: 15px
 }
+*/

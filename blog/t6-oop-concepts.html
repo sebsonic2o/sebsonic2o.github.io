@@ -5,6 +5,8 @@
   <link rel="stylesheet" type="text/css" href="../stylesheets/default.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/subdefault.css">
   <link rel="stylesheet" type="text/css" href="../stylesheets/blog-stylesheet.css">
+  <link rel="stylesheet" type="text/css" href="../stylesheets/prism.css">
+<script src="../js/prism.js"></script>
 </head>
 <body>
 <header>
@@ -47,23 +49,22 @@
           <li>You can change me to a square</li>
         </ul>
       </p>
-      <div class="code">
-        <p>
-          class Rectangle<br>
-          &nbsp;&nbsp;def initialize(width, height)<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;@width = width<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;@height = height<br>
-          &nbsp;&nbsp;end<br><br>
-          &nbsp;&nbsp;def to_square<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;if @width > @height<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@height = @width<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;else<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@width = @height<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;end<br>
-          &nbsp;&nbsp;end<br>
+      <pre><code class="language-ruby">
+      class Rectangle
+        def initialize(width, height)
+          @width = width
+          @height = height
+        end
+
+        def to_square
+          if @width > @height
+            @height = @width
+          else
+            @width = @height
           end
-        </p>
-      </div>
+        end
+      end
+      </code></pre>
       <p>
         In FP, the code is organized with functions, and a contract is signed on data in and out of the function. Such a contract might look a little bit like this:
         <ul>
@@ -74,18 +75,17 @@
           <li>Given the same input, I will always return the same output</li>
         </ul>
       </p>
-      <div class="code">
-        <p>
-          Rectangle = Struct.new(:width, :height)<br><br>
-          def to_square(rectangle)<br>
-          &nbsp;&nbsp;if rectangle.width > rectangle.height<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;Rectangle.new(rectangle.width, rectangle.width)<br>
-          &nbsp;&nbsp;else<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;Rectangle.new(rectangle.height, rectangle.height)<br>
-          &nbsp;&nbsp;end<br>
-          end
-        </p>
-      </div>
+      <pre><code class="language-ruby">
+      Rectangle = Struct.new(:width, :height)
+
+      def to_square(rectangle)
+        if rectangle.width > rectangle.height
+          Rectangle.new(rectangle.width, rectangle.width)
+        else
+          Rectangle.new(rectangle.height, rectangle.height)
+        end
+      end
+      </code></pre>
       <p>
         To get to an end result with FP, you will then chain functions without changing the state of variables. This means that there is no concurrent update problems in your program since nothing is getting updated.
       </p>
