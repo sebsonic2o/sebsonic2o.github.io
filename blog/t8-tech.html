@@ -96,6 +96,7 @@ puts "*** Bubble sort of large array in #{time_bubble - time_start} seconds ***"
         MERGE SORT breaks down an array until it can reconstruct the set by merging sorted sub-sets. The algorithm recursively breaks down the array into smaller sub-sets until each number is its own array, i.e., sorted. Then, it creates the sorted array by merging successively the smaller sub-sets in an orderly fashion.
       </p>
       <pre><code class="language-ruby">
+# merge two arrays in orderly fashion (from smaller to greater number)
 def merge(left, right)
   index_left = 0
   index_right = 0
