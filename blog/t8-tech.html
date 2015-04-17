@@ -32,88 +32,210 @@
     <section class="date">April 16th, 2015</section>
   </div>
   <div id="main-middle">
-    <section id="article-title">Tech</section>
-    <section id="article-teaser">Or thinking about Sorting (merge sort, quick sort, bubble sort)...</section>
+    <section id="article-title">Rock, Paper, Scissors</section>
+    <section id="article-teaser">Or thinking about bubble, merge, and quick sort...</section>
     <article>
       <p>
-        Like some other programming languages, Ruby is Object-Oriented. This means that everything is represented and manipulated as an Object. What is an Object then? It is basically anything that has its own state and behavior. And we can define our own Objects to best model... well, anything. However, all things (i.e. Objects) are different, but many are kind of the same. This is what a Class is. In Ruby, when defining our own Objects, we will first create a Class to say what kind of Objects we want to create.
+        When programming, we try to solve problems performing step-by-step operations. And a self-contained set of operations is an algorithm. However, there can be various algorithms to solve a same problem. For instance, we will look into three different ways to put elements of a list in a certain order, i.e., to sort a list. I will describe, implement (in Ruby), and demonstrate each algorithm to sort an array of numbers in ascending order.
       </p>
       <p>
-        For instance, we may think of modeling a 2015 Mercedes-Benz C63 AMG coupe. It is kind of a car, isn't it? So let's first create a Class Car in Ruby:
+        BUBBLE SORT is a simple sorting algorithm. The algorithm iterates through the array. It compares each pair of adjacent numbers, and swap them if the first value is greater than the second value. Each iteration pass will "bubble" the greater number towards the end of the array. We keep repeating until no swaps have occurred on the last pass, i.e., sorted.
       </p>
       <pre><code class="language-ruby">
-      class Car
-      end
-      </code></pre>
-      <p>
-        We may want to specify how to create our car. This is a special behavior of our car. In Ruby, a behavior of an Object is an instance method. And the initialize method can be used at creation:
-      </p>
-      <pre><code class="language-ruby">
-      class Car
-        def initialize
-        end
-      end
-      </code></pre>
-      <p>
-        The year (2015), brand (Mercedes-Benz), model (C63 AMG), and style (coupe) differentiate our car from other cars. All those characterictics should be saved. We should do this at creation. In Ruby, we use instance variables (starting with a @):
-      </p>
-      <pre><code class="language-ruby">
-      class Car
-        def initialize(year, brand, model, style)
-          @year = year
-          @brand = brand
-          @model = model
-          @style = style
-        end
-      end
-      </code></pre>
-      <p>
-        Furthermore, we might want to add its state out of the factory. For instance, its mileage could be set at creation:
-      </p>
-      <pre><code class="language-ruby">
-      class Car
-        def initialize(year, brand, model, style)
-          @year = year
-          @brand = brand
-          @model = model
-          @style = style
+def bubble_sort(array)
 
-          @mileage = 0
+  if array.length > 1
+
+    sorted = false
+
+    # loop until array is sorted
+    while !sorted
+
+      sorted = true
+
+      # iterate through array
+      for index in (0..array.length-2)
+
+        # compare if first value greater than second value
+        if array[index] > array[index+1]
+
+          # set sorted to false if swap occurs
+          sorted = false
+
+          # swap values
+          number_to_swap = array[index]
+          array[index] = array[index+1]
+          array[index+1] = number_to_swap
         end
       end
+    end
+  end
+
+  return array
+end
       </code></pre>
       <p>
-        A car is only good if it can be driven. This will change our mileage. It is another behavior of our car. So we define another instance method to drive:
+        The bubble sort algorithm performs decently well on small sets, but performance degrades as sets get larger. The downside of the bubble sort is that small numbers towards the end of the array will slow down the sort as the algorithm has to move them one-by-one all the way to the front of the array. Please find below some sample performance tests run with bubble sort.
       </p>
       <pre><code class="language-ruby">
-      class Car
-        def initialize(year, brand, model, style)
-          @year = year
-          @brand = brand
-          @model = model
-          @style = style
+time_start = Time.now
+bubble_sort([2, 8, 9, 0, 6, 5, 7, 4, 3, 1])
+time_bubble = Time.now
+puts "*** Bubble sort of small array in &num;{time_bubble - time_start} seconds ***"
 
-          @mileage = 0
-        end
+# => *** Bubble sort of small array in 1.9e-05 seconds ***
 
-        def drive(distance)
-          @mileage += distance
-        end
+time_start = Time.now
+bubble_sort(array_with_1000_numbers)
+time_bubble = Time.now
+puts "*** Bubble sort of large array in #{time_bubble - time_start} seconds ***"
+
+# => *** Bubble sort of large array in 0.105054 seconds ***
+      </code></pre>
+      <p>
+        MERGE SORT breaks down an array until it can reconstruct the set by merging sorted sub-sets. The algorithm recursively breaks down the array into smaller sub-sets until each number is its own array, i.e., sorted. Then, it creates the sorted array by merging successively the smaller sub-sets in an orderly fashion.
+      </p>
+      <pre><code class="language-ruby">
+def merge(left, right)
+  index_left = 0
+  index_right = 0
+  result = []
+
+  # iterate through both arrays to add sorted numbers to new array
+  while index_left < left.length && index_right < right.length
+    if left[index_left] <= right[index_right]
+      result << left[index_left]
+      index_left += 1
+    else
+      result << right[index_right]
+      index_right += 1
+    end
+  end
+
+  # add remaining sorted numbers from one array to new array
+  if (index_left < left.length) then
+    for index in (index_left..left.length-1)
+      result << left[index]
+    end
+  else
+    for index in (index_right..right.length-1)
+      result << right[index]
+    end
+  end
+
+  return result
+end
+
+def merge_sort(array)
+
+  if array.length > 1
+
+    # break down recursively the array into smaller sub-sets
+    half = array.length / 2
+    left = array[0..half-1]
+    right = array[half..array.length-1]
+    sorted_left = merge_sort(left)
+    sorted_right = merge_sort(right)
+
+    # merge smaller sorted sub-sets in orderly fashion (from smaller to greater number)
+    sorted_array = merge(sorted_left, sorted_right)
+
+    return sorted_array
+  else
+    return array
+  end
+end
+      </code></pre>
+      <p>
+        The speed of the merge sort comes from the fact that it is easy to merge a sorted list with another already sorted list. It performs decently well on larger sets. Please find below the same performance tests run with merge sort.
+      </p>
+      <pre><code class="language-ruby">
+time_start = Time.now
+merge_sort([2, 8, 9, 0, 6, 5, 7, 4, 3, 1])
+time_merge = Time.now
+puts "*** Merge sort of small array in #{time_merge - time_start} seconds ***"
+
+# => *** Merge sort of small array in 1.9e-05 seconds ***
+
+time_start = Time.now
+merge_sort(array_with_1000_numbers)
+time_merge = Time.now
+puts "*** Merge sort of large array in #{time_merge - time_start} seconds ***"
+
+# => *** Merge sort of large array in 0.002174 seconds ***
+      </code></pre>
+      <p>
+        QUICK SORT selects an element in the array called the pivot, moves all the values less than the pivot to before the pivot, and all the values greater than the pivot to after the pivot. After each pass, the pivot value is in the correct place in the set, even if the values before and after the pivot are not in the correct order. Then, this process is recursively repeated for the smaller sub-sets (lesser and greater than the pivot value) until the entire array is sorted.
+      </p>
+      <pre><code class="language-ruby">
+def quick_sort(array)
+
+  if array.length > 1
+
+    # select pivot
+    pivot_index = array.length / 2
+    pivot_value = array[pivot_index]
+
+    lesser = []
+    equal = []
+    greater = []
+
+    # push all values less than pivot to lesser, and all values greater than pivot to greater
+    array.each do |number|
+      if number < pivot_value
+        lesser << number
+      elsif number == pivot_value
+        equal << number
+      else
+        greater << number
       end
+    end
+
+    # repeat recursively for smaller sub-sets (lesser and greater)
+    sorted_array = quick_sort(lesser) + equal + quick_sort(greater)
+
+    return sorted_array
+  else
+    return array
+  end
+end
       </code></pre>
       <p>
-        Now, we can create our 2015 Mercedes-Benz C63 AMG coupe and take it for a first drive:
+        Quick sort is a pretty fast and efficient algorithm. Please find below the same performance tests run with quick sort.
       </p>
       <pre><code class="language-ruby">
-      our_car = Car.new(2015, "Mercedes-Benz", "C63 AMG", "coupe")
-      our_car.drive(10)
+time_start = Time.now
+quick_sort([2, 8, 9, 0, 6, 5, 7, 4, 3, 1])
+time_quick = Time.now
+puts "*** Quick sort of small array in #{time_quick - time_start} seconds ***"
+
+# => *** Quick sort of small array in 1.3e-05 seconds ***
+
+time_start = Time.now
+quick_sort(array_with_1000_numbers)
+time_quick = Time.now
+puts "*** Quick sort of large array in #{time_quick - time_start} seconds ***"
+
+# => *** Quick sort of large array in 0.000401 seconds ***
       </code></pre>
       <p>
-        Please note that new is being used to create our car Object and calls our special instance method initialize.
+        Even if quick sort seems to be the better algorithm out of the three, it is important to note that choosing a good pivot element is key, as consistently poor choices of pivots can result in drastically slower performance, but good choice of pivots (median value for instance) yields optimal performance. In Ruby, array#sort does leverage the quick sort algorithm, and performs far better because of its pivot selection. Please find below the same performance tests run with array#sort.
       </p>
-      <p>
-        <a href="https://www.youtube.com/watch?v=7tGuJ34062s">"Oh Lord won't you buy me a Mercedes Benz?"</a> Oh yes we did, Janis Joplin!
-      </p>
+      <pre><code class="language-ruby">
+time_start = Time.now
+[2, 8, 9, 0, 6, 5, 7, 4, 3, 1].sort
+time_ruby = Time.now
+puts "*** Ruby sort of small array in #{time_ruby - time_start} seconds ***"
+
+# => *** Ruby sort of small array in 3.0e-06 seconds ***
+
+time_start = Time.now
+array_with_1000_numbers.sort
+time_ruby = Time.now
+puts "*** Ruby sort of large array in #{time_ruby - time_start} seconds ***"
+
+# => *** Ruby sort of large array in 5.8e-05 seconds ***
+      </code></pre>
     </article>
   </div>
   <div id="main-right">
